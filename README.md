@@ -69,9 +69,13 @@ Target units: ate
 
 ### Effect
 
+The estimated effect of education on income is 4.01, which is very close to the value used when generating the data, the value used was 4.
+
 #### Estimate
 Mean value: 4.012529417821327
 p-value: [0, 0.001]
+
+
 
 
 
