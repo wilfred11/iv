@@ -69,11 +69,17 @@ Target units: ate
 
 ### Effect
 
-The estimated effect of education on income is 4.01, which is very close to the value used when generating the data, the value used was 4.
+The estimated effect of education on income is 4.01, which is very close to the value used when generating the data, the value used was 4. This effect indicates that increasing education by 1 increases income by 4.
 
 #### Estimate
 Mean value: 4.012529417821327
 p-value: [0, 0.001]
+
+### Refutation
+
+`ref = model.refute_estimate(identified_estimand, estimate, method_name="placebo_treatment_refuter", placebo_type="permute")`
+
+Replacing the instrumental variable with an independent random variable reduces the effect to 
 
 
 
