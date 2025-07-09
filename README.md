@@ -26,13 +26,7 @@ No such variable(s) found!
 ### Estimand : 2
 Estimand name: iv
 Estimand expression:
- ⎡                                            -1⎤
- ⎢    d              ⎛    d                  ⎞  ⎥
-E⎢──────────(income)⋅⎜──────────([education])⎟  ⎥
- ⎣d[voucher]         ⎝d[voucher]             ⎠  ⎦
-
- $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
- 
+Expectation(Derivative(income, [voucher])*Derivative([education], [voucher])**(-1))
 Estimand assumption 1, As-if-random: If U→→income then ¬(U →→{voucher})
 Estimand assumption 2, Exclusion: If we remove {voucher}→{education}, then ¬({voucher}→income)
 
