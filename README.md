@@ -30,6 +30,9 @@ Estimand expression:
  ⎢    d              ⎛    d                  ⎞  ⎥
 E⎢──────────(income)⋅⎜──────────([education])⎟  ⎥
  ⎣d[voucher]         ⎝d[voucher]             ⎠  ⎦
+
+ $$ x = {-b \pm \sqrt{b^2-4ac} \over 2a} $$
+ 
 Estimand assumption 1, As-if-random: If U→→income then ¬(U →→{voucher})
 Estimand assumption 2, Exclusion: If we remove {voucher}→{education}, then ¬({voucher}→income)
 
