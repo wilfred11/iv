@@ -25,9 +25,13 @@ No such variable(s) found!
 
 ### Estimand : 2
 Estimand name: iv
+
 Estimand expression:
+
 Expectation(Derivative(income, [voucher])*Derivative([education], [voucher])**(-1))
+
 Estimand assumption 1, As-if-random: If U→→income then ¬(U →→{voucher})
+
 Estimand assumption 2, Exclusion: If we remove {voucher}→{education}, then ¬({voucher}→income)
 
 ### Estimand : 3
