@@ -77,10 +77,16 @@ Mean value: 4.012529417821327
 p-value: [0, 0.001]
 
 ### Refutation
+[Refutation methods](https://causalwizard.app/inference/article/bootstrap-refuters-dowhy#:~:text=The%20refutation%20methods%20in%20DoWhy,with%20the%20model%20or%20data.)
+
+Whereas ML's validation more broadly seeks to estimate model performance on unseen data, refutation seeks to do this by modelling the results of specific, defined scenarios. Each refutation scenario “disproves” a potential “explanation” of the original estimate. 
+
+The Placebo Treatment refuter verifies that if you replace your real Treatment (education) with a random variable, the causal effect disappears.
+
+It is applied like this
 
 `ref = model.refute_estimate(identified_estimand, estimate, method_name="placebo_treatment_refuter", placebo_type="permute")`
 
-Replacing the instrumental variable with an independent random variable reduces the effect to 
 
 
 
