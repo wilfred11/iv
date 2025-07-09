@@ -15,6 +15,10 @@ The first thing to do is to let dowhy attempt to find an estimand.
 
 As the voucher node is uninfluenced by the unobserved U node, and it influences education, it is a good estimand for the effect of education on income. 
 
+The code to find an estimand looks like 
+
+`identified_estimand = model.identify_effect(proceed_when_unidentifiable=True)`
+
 The output upon finding the estimand voucher looks like below. The estimand assumptions made for the voucher estimand are true, as our data was created according to these premises. To calculate the effect education has on income when influencing education through voucher will be done via a combination of two partial derivatives.
 
 Estimand type: EstimandType.NONPARAMETRIC_ATE
@@ -37,6 +41,10 @@ Estimand assumption 2, Exclusion: If we remove {voucher}→{education}, then ¬(
 ### Estimand : 3
 Estimand name: frontdoor
 No such variable(s) found!
+
+## Estimate the effect
+
+
 
 
 
