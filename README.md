@@ -13,7 +13,7 @@ The first thing to do is to let dowhy attempt to find an estimand.
 
 As the voucher is uninfluenced by the unobserved U node, and it influences education, it is a good estimand for the effect of education on income.
 
-#### Find an estimand
+## Find an estimand
 
 The output upon finding the estimand voucher looks like
 
