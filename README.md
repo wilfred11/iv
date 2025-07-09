@@ -13,9 +13,9 @@ The Python package dowhy is created for this kind of calculations.
 
 The first thing to do is to let dowhy attempt to find an estimand.
 
-As the voucher is uninfluenced by the unobserved U node, and it influences education, it is a good estimand for the effect of education on income.
+As the voucher node is uninfluenced by the unobserved U node, and it influences education, it is a good estimand for the effect of education on income. 
 
-The output upon finding the estimand voucher looks like
+The output upon finding the estimand voucher looks like below. The estimand assumptions made for the voucher estimand are true, as our data was created according to these premises.
 
 Estimand type: EstimandType.NONPARAMETRIC_ATE
 
@@ -36,4 +36,8 @@ Estimand assumption 2, Exclusion: If we remove {voucher}→{education}, then ¬(
 ### Estimand : 3
 Estimand name: frontdoor
 No such variable(s) found!
+
+
+
+
 
