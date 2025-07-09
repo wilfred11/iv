@@ -44,6 +44,30 @@ No such variable(s) found!
 
 ## Estimate the effect
 
+To estimate the effect the following code is used.
+
+`estimate = model.estimate_effect(identified_estimand, method_name="iv.instrumental_variable", test_significance=True)`
+
+## Realized estimand
+Realized estimand: Wald Estimator
+
+Realized estimand type: EstimandType.NONPARAMETRIC_ATE
+
+Estimand expression:
+
+Expectation(Derivative(income, [voucher])*Derivative([education], [voucher])**(-1))
+
+Estimand assumption 1, As-if-random: If U→→income then ¬(U →→{voucher})
+
+Estimand assumption 2, Exclusion: If we remove {voucher}→{education}, then ¬({voucher}→income)
+
+Estimand assumption 3, treatment_effect_homogeneity: Each unit's treatment ['education'] is affected in the same way by common causes of ['education'] and ['income']
+
+Estimand assumption 4, outcome_effect_homogeneity: Each unit's outcome ['income'] is affected in the same way by common causes of ['education'] and ['income']
+
+Target units: ate
+
+
 
 
 
