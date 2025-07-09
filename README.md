@@ -2,9 +2,9 @@ To get an idea of instrumental variables and their utility in a causal model, a 
 
 <img src="https://github.com/user-attachments/assets/ec5418df-936d-4bc3-baf3-a963f631ffce" height="200" width="300"/>
 
-The image shows a graph containing an unobserved U node, this node represents the individuals ability, to generate the neighbouring node's (education, income) data, the randomized ability value is used to generate the education and income datapoint. The voucher data is a random variable that influences education just like the (unobserved) ability node. Income is influenced by a factor 4 by education, and by a factor 2 by the unobserved ability.
+The image shows a causal model containing an unobserved U node, this node represents the individual's ability. To generate the neighbouring nodes' (education, income) data, the randomized ability value is used to generate the education and income datapoint. The voucher data is a random variable that influences education just like the (unobserved) ability node. Income is influenced by a factor 4 by education, and by a factor 2 by the unobserved ability.
 
-The whole idea of this setup is to try to statistically guess the influence by education. As all random data is normally distributed, this should be possible.
+The whole idea of this setup is to try to statistically guess the influence by education. As all random data is normally distributed (even the unobserved ability), this should be possible.
 
 The Python package dowhy is created for this kind of calculations.
 
@@ -85,6 +85,17 @@ The Placebo Treatment refuter verifies that if you replace your real Treatment (
 It is applied like this
 
 `ref = model.refute_estimate(identified_estimand, estimate, method_name="placebo_treatment_refuter", placebo_type="permute")`
+
+The code above results in the output below.
+
+#### Placebo
+
+The effect after applying the placebo refutation is 0, with a p-value of 0.92.
+
+Refute: Use a Placebo Treatment
+Estimated effect:4.012529417821327
+New effect:0.008035976535494567
+p value:0.92
 
 
 
