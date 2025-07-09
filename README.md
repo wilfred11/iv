@@ -9,7 +9,7 @@ The whole idea of this setup is to try to statistically guess the influence by e
 
 The Python package dowhy is created for this kind of calculations.
 
-## Finding an estimand
+### Finding an estimand
 
 The first thing to do is to let dowhy attempt to find an estimand.
 
@@ -23,11 +23,11 @@ The output upon finding the estimand voucher looks like below. The estimand assu
 
 Estimand type: EstimandType.NONPARAMETRIC_ATE
 
-### Estimand : 1
+#### Estimand : 1
 Estimand name: backdoor
 No such variable(s) found!
 
-### Estimand : 2
+#### Estimand : 2
 Estimand name: iv
 
 Estimand expression:
@@ -38,17 +38,17 @@ Estimand assumption 1, As-if-random: If U→→income then ¬(U →→{voucher})
 
 Estimand assumption 2, Exclusion: If we remove {voucher}→{education}, then ¬({voucher}→income)
 
-### Estimand : 3
+#### Estimand : 3
 Estimand name: frontdoor
 No such variable(s) found!
 
-## Estimate the effect
+### Estimate the effect
 
 To estimate the effect the following code is used.
 
 `estimate = model.estimate_effect(identified_estimand, method_name="iv.instrumental_variable", test_significance=True)`
 
-## Realized estimand
+#### Realized estimand
 Realized estimand: Wald Estimator
 
 Realized estimand type: EstimandType.NONPARAMETRIC_ATE
@@ -66,6 +66,15 @@ Estimand assumption 3, treatment_effect_homogeneity: Each unit's treatment ['edu
 Estimand assumption 4, outcome_effect_homogeneity: Each unit's outcome ['income'] is affected in the same way by common causes of ['education'] and ['income']
 
 Target units: ate
+
+### Effect
+
+#### Estimate
+Mean value: 4.012529417821327
+p-value: [0, 0.001]
+
+
+
 
 
 
