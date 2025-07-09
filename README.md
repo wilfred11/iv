@@ -93,8 +93,11 @@ The code above results in the output below.
 The effect after applying the placebo refutation is 0, with a p-value of 0.92.
 
 Refute: Use a Placebo Treatment
+
 Estimated effect:4.012529417821327
+
 New effect:0.008035976535494567
+
 p value:0.92
 
 
