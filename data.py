@@ -8,10 +8,8 @@ def get_data():
     education_voucher = 2
     income_abilty = 2
     income_education = 4
-    # confounder
-    ability = np.random.normal(0, 3, size=n_points)
 
-    # instrument
+    ability = np.random.normal(0, 3, size=n_points)
     voucher = np.random.normal(2, 1, size=n_points)
 
     # treatment
