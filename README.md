@@ -4,7 +4,7 @@ To get an idea of instrumental variables and their utility in a causal model, a 
 
 The image shows a causal model containing an unobserved U node, this node represents the individual's ability. To generate the neighbouring nodes' (education, income) data, the randomized ability value is used to generate the education and income datapoint. The voucher data is a random variable that influences education just like the (unobserved) ability node. Income is influenced by a factor 4 by education, and by a factor 2 by the unobserved ability.
 
-The whole idea of this setup is to try to statistically guess the influence by education. As all random data is normally distributed (even the unobserved ability), this should be possible.
+The whole idea of this setup is to try to statistically estimate the influence by education.
 
 
 
