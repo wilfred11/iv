@@ -106,7 +106,7 @@ p value:0.92
 
 Firstly to calculate the effect using plain formulas can be done by 
 
-$$ frac{cov()}{cov} $$
+$$ \frac{cov()}{cov} $$
 
 
 
