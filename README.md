@@ -106,6 +106,10 @@ p value:0.92
 
 Firstly to calculate the effect using plain formulas can be done by 
 
+
+'cov_v_e = data['voucher'].cov(data['education'])'
+'cov_v_i = data['voucher'].cov(data['income'])'
+
 $$ \frac{cov()}{cov} $$
 
 
