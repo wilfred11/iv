@@ -8,7 +8,11 @@ The whole idea of this setup is to try to statistically estimate the influence o
 
 ### The instrumental variable
 
-As the unobserved variable has a direct influence on income and on education, the education variable cannot be directly used to estimate its influence on income. The instrumental variable 'voucher' has direct influence on 'education', and through the influence on 'education' it has influence on the 'income' variable.
+As the unobserved variable has a direct influence on income and on education, the education variable cannot be directly used to estimate its influence on income. 
+
+#### The exclusion restriction
+
+The instrumental variable 'voucher' has a direct causal influence on 'education', and through the influence on 'education' it has influence on the 'income' variable. But it has no direct effect on income, this is the exclusion restriction.
 
 The Python package dowhy is created for this kind of calculations.
 
