@@ -6,6 +6,8 @@ The image shows a causal model containing an unobserved U node, this node repres
 
 The whole idea of this setup is to try to statistically estimate the influence on income by education.
 
+### The instrumental variable
+
 As the unobserved variable has a direct influence on income and on education, the education variable cannot be directly used to estimate its influence on income. The instrumental variable 'voucher' has direct influence on 'education', and through the influence on 'education' it has influence on the 'income' variable.
 
 The Python package dowhy is created for this kind of calculations.
