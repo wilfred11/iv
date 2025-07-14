@@ -106,7 +106,7 @@ p value:0.92
 
 ### Formula for this case
 
-Firstly to calculate the effect, this piece of code is enough. The data variable is a pandas dataset. In this case the effect is just a fraction of covariances. 
+Firstly to calculate the effect, this piece of code is enough. The data variable represents a pandas dataset. In this case the effect is calculated using a fraction of covariances. 
 
 `cov_v_e = data['voucher'].cov(data['education'])`
 
