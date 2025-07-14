@@ -10,9 +10,9 @@ The whole idea of this setup is to try to statistically estimate the influence o
 
 As the unobserved variable has a direct influence on income and on education, the education variable cannot be directly used to estimate its influence on income. 
 
-#### The relevance assumption and the exclusion restriction
+#### The relevance assumption, the exclusion restriction, exogeneity assumption
 
-The instrumental variable 'voucher' has a direct causal influence on 'education', this is called **the relevance assumption**. Through the influence on 'education' it has influence on the 'income' variable. But it has no direct effect on income, this is **the exclusion restriction**. If it would have this direct effect on 'income', it would be hard to separate this effect from the effect the treatment 'education' has on 'income'.
+The instrumental variable 'voucher' has a direct causal influence on 'education', this is called **the relevance assumption**. Through the influence on 'education' it has influence on the 'income' variable. But it has no direct effect on income, this is **the exclusion restriction**. If it would have this direct effect on 'income', it would be hard to separate this effect from the effect the treatment 'education' has on 'income'. The instrumental variable must be randomly assigned, the corelation between 'voucher' and 'income' might just reflect some unobserved confounder, so that's why the instrumental variable should be randomly assigned.
 
 The Python package dowhy is created for this kind of calculations.
 
