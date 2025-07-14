@@ -2,11 +2,11 @@ To get an idea of instrumental variables and their utility in a causal model, a 
 
 <img src="https://github.com/user-attachments/assets/ec5418df-936d-4bc3-baf3-a963f631ffce" height="200" width="300"/>
 
-The image shows a causal model containing an unobserved U node, this node represents the individual's ability. To generate the neighbouring nodes' (education, income) data, the randomized ability value is used to generate the education and income datapoint. The voucher data is a random variable that influences education just like the (unobserved) ability node. Income is influenced by a factor 4 by education, and by a factor 2 by the unobserved ability.
+The image shows a causal model containing an unobserved U node, this node represents the individual's ability. To generate the neighbouring nodes' (education, income) data, the randomized ability value is used to generate the education and income datapoints. The voucher data is a random variable that influences education just like the (unobserved) ability node. Income is influenced by a factor 4 by education, and by a factor 2 by the unobserved ability.
 
-The whole idea of this setup is to try to statistically estimate the influence by education.
+The whole idea of this setup is to try to statistically estimate the influence on income by education.
 
-
+As the unobserved variable has a direct influence on income and on education, the education variable cannot be directly used to estimate its influence on income. The instrumental variable 'voucher' has direct influence on 'education', and through the influence on 'education' it has influence on the 'income' variable.
 
 The Python package dowhy is created for this kind of calculations.
 
