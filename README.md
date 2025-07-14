@@ -12,7 +12,7 @@ As the unobserved variable has a direct influence on income and on education, th
 
 #### The exclusion restriction
 
-The instrumental variable 'voucher' has a direct causal influence on 'education', and through the influence on 'education' it has influence on the 'income' variable. But it has no direct effect on income, this is the exclusion restriction.
+The instrumental variable 'voucher' has a direct causal influence on 'education', and through the influence on 'education' it has influence on the 'income' variable. But it has no direct effect on income, this is the exclusion restriction. If it would have this direct effect on 'income', it would be hard to separate this effect from the effect  the treatment 'education' has on 'income'.
 
 The Python package dowhy is created for this kind of calculations.
 
