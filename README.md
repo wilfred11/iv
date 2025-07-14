@@ -109,7 +109,9 @@ p value:0.92
 Firstly to calculate the effect, this piece of code is enough. The data variable is a pandas dataset. In this case the effect is just a fraction of covariances. 
 
 `cov_v_e = data['voucher'].cov(data['education'])`
+
 `cov_v_i = data['voucher'].cov(data['income'])`
+
 `estimated_effect=cov_v_i/cov_v_e`
 
 
