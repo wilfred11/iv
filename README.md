@@ -6,6 +6,8 @@ The image shows a causal model containing an unobserved U node, this node repres
 
 The whole idea of this setup is to try to statistically guess the influence by education. As all random data is normally distributed (even the unobserved ability), this should be possible.
 
+
+
 The Python package dowhy is created for this kind of calculations.
 
 ### Finding an estimand
@@ -99,6 +101,12 @@ Estimated effect: 4.012529417821327
 New effect: 0.008035976535494567
 
 p value:0.92
+
+## Idea behind instrumental variables
+
+Firstly to calculate the effect using plain formulas can be done by 
+
+$$ frac{cov()}{cov} $$
 
 
 
