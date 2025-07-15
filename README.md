@@ -22,6 +22,9 @@ The direct relation between variables voucher and education and voucher and inco
 
 <img width="350" alt="v_i" src="https://github.com/user-attachments/assets/b61c2100-8526-4c8b-b9cd-320b24efb37d" />
 
+<img width="350" alt="e_i" src="https://github.com/user-attachments/assets/5ec6bea2-ba8c-47b6-9c52-8b40a259a581" />
+
+
 ### Calculating estimated effect by hand
 
 #### Using covariances
