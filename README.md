@@ -22,7 +22,7 @@ The direct relation between variables voucher and education and voucher and inco
 
 <img width="350" alt="v_i" src="https://github.com/user-attachments/assets/b61c2100-8526-4c8b-b9cd-320b24efb37d" />
 
-### Calculating estimate effect by hand
+### Calculating estimated effect by hand
 
 #### Using covariances
 
@@ -36,15 +36,21 @@ To calculate the effect, this piece of code is enough. The data variable represe
 
 #### Using linear regression and derivatives
 
-Another way to calculate the effect is using derivatives and linear regression lines.
+Another way to calculate the effect is using derivatives of linear regression lines' functions.
 
 To calculate the regression lines for columns voucher and education, and voucher and income.
+
+**calculating linear regression**
 
 `res_v_e = stats.linregress(data["voucher"], data["education"])`
 
 `res_v_i = stats.linregress(data["voucher"], data["income"])`
 
-The values for these regression lines will be used to setup formulas for the lines. Sympy is a python package which allows to calculate derivatives for formulas.
+The values for these regression lines will be used to setup formulas for the lines. 
+
+**calculating derivatives**
+
+Sympy is a python package which allows to calculate derivatives for formulas.
 
 `from sympy import symbols, diff`
 
