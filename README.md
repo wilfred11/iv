@@ -129,7 +129,9 @@ Whereas ML's validation more broadly seeks to estimate model performance on unse
 
 The Placebo Treatment refuter verifies that if you replace your real Treatment (education) with a random variable, the causal effect disappears.
 
-It is applied like this
+Failing the Placebo-Treatment refuter suggests a methodological or program error, data-leakage, or data which easily allows a falsely non-zero causal effect to be generated. You should definitely investigate if this happens.
+
+The test itself is applied like this
 
 `ref = model.refute_estimate(identified_estimand, estimate, method_name="placebo_treatment_refuter", placebo_type="permute")`
 
