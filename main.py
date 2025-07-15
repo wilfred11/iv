@@ -13,7 +13,7 @@ from data import get_data
 
 np.random.seed(1)
 
-do=2
+do=1
 #https://www.youtube.com/watch?v=nsr9eh-qVPg
 
 if do==1:
