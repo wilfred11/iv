@@ -14,9 +14,7 @@ As the unobserved variable has a direct influence on income and on education, th
 
 The instrumental variable 'voucher' has a direct causal influence on 'education', this is called **the relevance assumption**. Through the influence on 'education' it has influence on the 'income' variable. But it has no direct effect on income, this is **the exclusion restriction**. If it would have this direct effect on 'income', it would be hard to separate this effect from the effect the treatment 'education' has on 'income'. The instrumental variable must be randomly assigned, the corelation between 'voucher' and 'income' might just reflect some unobserved confounder, so that's why the instrumental variable should be randomly assigned.
 
-### Calculating estimate effect by hand
-
-#### Visual relation between 'voucher' and 'education' and 'voucher' and 'income'.
+### Visual relation between 'voucher' and 'education' and 'voucher' and 'income'.
 
 The direct relation between variables voucher and education and voucher and income can be visualized.
 
@@ -24,8 +22,7 @@ The direct relation between variables voucher and education and voucher and inco
 
 <img width="350" alt="v_i" src="https://github.com/user-attachments/assets/b61c2100-8526-4c8b-b9cd-320b24efb37d" />
 
-
-
+### Calculating estimate effect by hand
 
 #### Using covariances
 
