@@ -6,15 +6,15 @@ The image shows a causal model containing an unobserved U node, this node repres
 
 The whole idea of this setup is to try to statistically estimate the influence on income by education.
 
-## The instrumental variable
+# The instrumental variable
 
 As the unobserved variable (U) has a direct influence on income and on education, the education variable cannot be directly used to estimate its influence on income.
 
-### The relevance assumption, the exclusion restriction, exogeneity assumption
+## The relevance assumption, the exclusion restriction, exogeneity assumption
 
 The instrumental variable 'voucher' has a direct causal influence on 'education', this is called **the relevance assumption**. Through the influence on 'education' it has influence on the 'income' variable. But it has no direct causal effect on income, this is **the exclusion restriction**. If it would have this direct effect on 'income', it would be hard to separate this effect from the effect the treatment 'education' has on 'income'. The corelation between 'voucher' and 'income' might just reflect some unobserved confounder, so that's why the instrumental variable should be randomly assigned to the unit, which is the **exogeneity assumption**.
 
-### Visual relation between 'voucher' and 'education' and 'voucher' and 'income'.
+## Visual relation between 'voucher' and 'education' and 'voucher' and 'income'.
 
 The direct relation between variables voucher and education and voucher and income can be visualized.
 
@@ -24,13 +24,13 @@ The direct relation between variables voucher and education and voucher and inco
 
 <img width="325" alt="e_i" src="https://github.com/user-attachments/assets/5ec6bea2-ba8c-47b6-9c52-8b40a259a581" />
 
-### DoWhy package
+## DoWhy package
 
 Even though in this case it is fairly simple to calculate the effect, the dowhy package is a good option for estimating the effect a variable has on another variable. It also allows for the application of refutation tests.
 
-### Calculating estimated effect by hand
+## Calculating estimated effect by hand
 
-#### Using covariances
+### Using covariances
 
 To calculate the effect, this piece of code is enough. The data variable represents a pandas dataframe. In this case the effect is calculated using a fraction of covariances. 
 
@@ -40,7 +40,7 @@ To calculate the effect, this piece of code is enough. The data variable represe
 
 `estimated_effect=cov_v_i/cov_v_e`
 
-#### Using linear regression and derivatives
+### Using linear regression and derivatives
 
 Another way to calculate the effect is using derivatives of linear regression lines' functions.
 
@@ -72,7 +72,7 @@ Sympy is a python package which allows to calculate derivatives for formulas.
 
 `estimated_effect=d_v_i / d_v_e`
 
-#### Using DoWhy
+### Using DoWhy
 
 The first thing to do is to let dowhy attempt to find an estimand.
 
@@ -86,7 +86,7 @@ Some output upon finding the estimand voucher looks like below. No frontdoor or 
 
 Estimand type: EstimandType.NONPARAMETRIC_ATE
 
-##### Estimand : 2
+#### Estimand : 2
 
 Estimand name: iv
 
@@ -98,7 +98,7 @@ Estimand assumption 1, As-if-random: If U→→income then ¬(U →→{voucher})
 
 Estimand assumption 2, Exclusion: If we remove {voucher}→{education}, then ¬({voucher}→income)
 
-##### Estimate the effect
+#### Estimate the effect
 
 To estimate the effect the following code is used.
 
@@ -121,7 +121,7 @@ Target units: ate
 The estimated effect of education on income is 4.10, which is close to the value used when generating the data, the value used was 4. 
 This effect value indicates that increasing education by 1 increases income by 4.10, some p-value is given too (0.001)..
 
-##### Refutation
+#### Refutation
 
 [dowhy Refutation methods](https://causalwizard.app/inference/article/bootstrap-refuters-dowhy#:~:text=The%20refutation%20methods%20in%20DoWhy,with%20the%20model%20or%20data.)
 
@@ -135,7 +135,7 @@ It is applied like this
 
 The code above results in the output below.
 
-#### Placebo
+##### Placebo
 
 The effect after applying the placebo refutation is 0, with a p-value of 0.92. According to this refutation test the original effect should be kept.
 
