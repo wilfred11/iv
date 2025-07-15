@@ -18,7 +18,7 @@ The instrumental variable 'voucher' has a direct causal influence on 'education'
 
 #### Visual relation between 'voucher' and 'education' and 'voucher' and 'income'.
 
-<img width="250" alt="v_e" src="https://github.com/user-attachments/assets/e6b8ca22-45d7-4c53-9f5d-4cd23f07d7cb" />
+<img width="350" alt="v_e" src="https://github.com/user-attachments/assets/e6b8ca22-45d7-4c53-9f5d-4cd23f07d7cb" />
 
 
 #### Using covariances
