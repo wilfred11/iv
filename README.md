@@ -139,11 +139,18 @@ To calculate the regression lines for columns voucher and education, and voucher
 The values for these regression lines will be used to setup formulas for the lines. Sympy is a python package which allows to calculate derivatives for formulas.
 
 `from sympy import symbols, diff`
+
 `voucher = symbols('voucher', real=True)`
+
 `f_v_e = res_v_e.intercept + (res_v_e.slope * voucher)`
+
 `d_v_e = diff(f_v_e, voucher)`
+
 `f_v_i = res_v_i.intercept + (res_v_i.slope * voucher)`
+
 `d_v_i = diff(f_v_i, voucher)`
+
+`estimated_effect=d_v_i / d_v_e`
 
 
 
