@@ -87,6 +87,7 @@ Some output upon finding the estimand voucher looks like below. No frontdoor or 
 Estimand type: EstimandType.NONPARAMETRIC_ATE
 
 ##### Estimand : 2
+
 Estimand name: iv
 
 Estimand expression:
@@ -104,6 +105,7 @@ To estimate the effect the following code is used.
 `estimate = model.estimate_effect(identified_estimand, method_name="iv.instrumental_variable", test_significance=True)`
 
 **Realized estimand**
+
 Realized estimand: Wald Estimator
 
 Realized estimand type: EstimandType.NONPARAMETRIC_ATE
@@ -120,6 +122,7 @@ The estimated effect of education on income is 4.10, which is close to the value
 This effect value indicates that increasing education by 1 increases income by 4.10, some p-value is given too (0.001)..
 
 ##### Refutation
+
 [dowhy Refutation methods](https://causalwizard.app/inference/article/bootstrap-refuters-dowhy#:~:text=The%20refutation%20methods%20in%20DoWhy,with%20the%20model%20or%20data.)
 
 Whereas ML's validation more broadly seeks to estimate model performance on unseen data, refutation seeks to do this by modelling the results of specific, defined scenarios. Each refutation scenario “disproves” a potential “explanation” of the original estimate. 
@@ -143,9 +146,6 @@ Estimated effect: 4.012529417821327
 New effect: 0.008035976535494567
 
 p value:0.92
-
-## Idea behind instrumental variables
-
 
 
 
