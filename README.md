@@ -48,6 +48,8 @@ To calculate the regression lines for columns voucher and education, and voucher
 
 **calculating linear regression**
 
+`from scipy import stats`
+
 `res_v_e = stats.linregress(data["voucher"], data["education"])`
 
 `res_v_i = stats.linregress(data["voucher"], data["income"])`
