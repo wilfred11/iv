@@ -12,7 +12,7 @@ As the unobserved variable (U) has a direct influence on income and on education
 
 ### The relevance assumption, the exclusion restriction, exogeneity assumption
 
-The instrumental variable 'voucher' has a direct causal influence on 'education', this is called **the relevance assumption**. Through the influence on 'education' it has influence on the 'income' variable. But it has no direct effect on income, this is **the exclusion restriction**. If it would have this direct effect on 'income', it would be hard to separate this effect from the effect the treatment 'education' has on 'income'. The instrumental variable must be randomly assigned, the corelation between 'voucher' and 'income' might just reflect some unobserved confounder, so that's why the instrumental variable should be randomly assigned.
+The instrumental variable 'voucher' has a direct causal influence on 'education', this is called **the relevance assumption**. Through the influence on 'education' it has influence on the 'income' variable. But it has no direct causal effect on income, this is **the exclusion restriction**. If it would have this direct effect on 'income', it would be hard to separate this effect from the effect the treatment 'education' has on 'income'. The corelation between 'voucher' and 'income' might just reflect some unobserved confounder, so that's why the instrumental variable should be randomly assigned to the unit, which is the **exogeneity assumption**.
 
 ### Visual relation between 'voucher' and 'education' and 'voucher' and 'income'.
 
