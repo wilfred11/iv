@@ -118,7 +118,7 @@ Target units: ate
 
 **Effect**
 
-The estimated effect of education on income is 4.10, which is close to the value used when generating the data, the value used was 4. 
+The estimated effect of education on income is 4.101007007046957, which is close to the value used when generating the data, the value used was 4. 
 This effect value indicates that increasing education by 1 increases income by 4.10, some p-value is given too (0.001)..
 
 #### Refutation
@@ -147,7 +147,7 @@ Estimated effect: 4.101007007046957
 
 New effect: 0.02668550867867409
 
-p value:0.92
+p value:0.8799999999999999
 
 
 
