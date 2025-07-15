@@ -18,11 +18,11 @@ The instrumental variable 'voucher' has a direct causal influence on 'education'
 
 The direct relation between variables voucher and education and voucher and income can be visualized.
 
-<img width="350" alt="v_e" src="https://github.com/user-attachments/assets/e6b8ca22-45d7-4c53-9f5d-4cd23f07d7cb" />
+<img width="325" alt="v_e" src="https://github.com/user-attachments/assets/e6b8ca22-45d7-4c53-9f5d-4cd23f07d7cb" />
 
-<img width="350" alt="v_i" src="https://github.com/user-attachments/assets/b61c2100-8526-4c8b-b9cd-320b24efb37d" />
+<img width="325" alt="v_i" src="https://github.com/user-attachments/assets/b61c2100-8526-4c8b-b9cd-320b24efb37d" />
 
-<img width="350" alt="e_i" src="https://github.com/user-attachments/assets/5ec6bea2-ba8c-47b6-9c52-8b40a259a581" />
+<img width="325" alt="e_i" src="https://github.com/user-attachments/assets/5ec6bea2-ba8c-47b6-9c52-8b40a259a581" />
 
 
 ### Calculating estimated effect by hand
