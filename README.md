@@ -6,13 +6,58 @@ The image shows a causal model containing an unobserved U node, this node repres
 
 The whole idea of this setup is to try to statistically estimate the influence on income by education.
 
-### The instrumental variable
+## The instrumental variable
 
 As the unobserved variable has a direct influence on income and on education, the education variable cannot be directly used to estimate its influence on income. 
 
-#### The relevance assumption, the exclusion restriction, exogeneity assumption
+### The relevance assumption, the exclusion restriction, exogeneity assumption
 
 The instrumental variable 'voucher' has a direct causal influence on 'education', this is called **the relevance assumption**. Through the influence on 'education' it has influence on the 'income' variable. But it has no direct effect on income, this is **the exclusion restriction**. If it would have this direct effect on 'income', it would be hard to separate this effect from the effect the treatment 'education' has on 'income'. The instrumental variable must be randomly assigned, the corelation between 'voucher' and 'income' might just reflect some unobserved confounder, so that's why the instrumental variable should be randomly assigned.
+
+### Calculating estimate effect by hand
+
+#### Visual relation between 'voucher' and 'education' and 'voucher' and 'income'.
+
+<img width="150" alt="v_e" src="https://github.com/user-attachments/assets/e6b8ca22-45d7-4c53-9f5d-4cd23f07d7cb" />
+
+
+#### Using covariances
+
+To calculate the effect, this piece of code is enough. The data variable represents a pandas dataframe. In this case the effect is calculated using a fraction of covariances. 
+
+`cov_v_e = data['voucher'].cov(data['education'])`
+
+`cov_v_i = data['voucher'].cov(data['income'])`
+
+`estimated_effect=cov_v_i/cov_v_e`
+
+#### Using linear regression and derivatives
+
+Another way to calculate the effect is using derivatives and linear regression lines.
+
+To calculate the regression lines for columns voucher and education, and voucher and income.
+
+`res_v_e = stats.linregress(data["voucher"], data["education"])`
+
+`res_v_i = stats.linregress(data["voucher"], data["income"])`
+
+The values for these regression lines will be used to setup formulas for the lines. Sympy is a python package which allows to calculate derivatives for formulas.
+
+`from sympy import symbols, diff`
+
+`voucher = symbols('voucher', real=True)`
+
+`f_v_e = res_v_e.intercept + (res_v_e.slope * voucher)`
+
+`d_v_e = diff(f_v_e, voucher)`
+
+`f_v_i = res_v_i.intercept + (res_v_i.slope * voucher)`
+
+`d_v_i = diff(f_v_i, voucher)`
+
+`estimated_effect=d_v_i / d_v_e`
+
+
 
 #### Data
 
@@ -114,43 +159,7 @@ p value:0.92
 
 ## Idea behind instrumental variables
 
-### Formula for this case
 
-#### Using covariances
-
-To calculate the effect, this piece of code is enough. The data variable represents a pandas dataframe. In this case the effect is calculated using a fraction of covariances. 
-
-`cov_v_e = data['voucher'].cov(data['education'])`
-
-`cov_v_i = data['voucher'].cov(data['income'])`
-
-`estimated_effect=cov_v_i/cov_v_e`
-
-#### Using linear regression and derivatives
-
-Another way to calculate the effect is using derivatives and linear regression lines.
-
-To calculate the regression lines for columns voucher and education, and voucher and income.
-
-`res_v_e = stats.linregress(data["voucher"], data["education"])`
-
-`res_v_i = stats.linregress(data["voucher"], data["income"])`
-
-The values for these regression lines will be used to setup formulas for the lines. Sympy is a python package which allows to calculate derivatives for formulas.
-
-`from sympy import symbols, diff`
-
-`voucher = symbols('voucher', real=True)`
-
-`f_v_e = res_v_e.intercept + (res_v_e.slope * voucher)`
-
-`d_v_e = diff(f_v_e, voucher)`
-
-`f_v_i = res_v_i.intercept + (res_v_i.slope * voucher)`
-
-`d_v_i = diff(f_v_i, voucher)`
-
-`estimated_effect=d_v_i / d_v_e`
 
 
 
