@@ -8,7 +8,7 @@ The whole idea of this setup is to try to statistically estimate the influence o
 
 ## The instrumental variable
 
-As the unobserved variable has a direct influence on income and on education, the education variable cannot be directly used to estimate its influence on income. 
+As the unobserved variable (U) has a direct influence on income and on education, the education variable cannot be directly used to estimate its influence on income. 
 
 ### The relevance assumption, the exclusion restriction, exogeneity assumption
 
