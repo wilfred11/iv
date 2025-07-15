@@ -8,7 +8,7 @@ The whole idea of this setup is to try to statistically estimate the influence o
 
 ## The instrumental variable
 
-As the unobserved variable (U) has a direct influence on income and on education, the education variable cannot be directly used to estimate its influence on income. 
+As the unobserved variable (U) has a direct influence on income and on education, the education variable cannot be directly used to estimate its influence on income.
 
 ### The relevance assumption, the exclusion restriction, exogeneity assumption
 
@@ -24,6 +24,9 @@ The direct relation between variables voucher and education and voucher and inco
 
 <img width="325" alt="e_i" src="https://github.com/user-attachments/assets/5ec6bea2-ba8c-47b6-9c52-8b40a259a581" />
 
+### DoWhy package
+
+Even though in this case it is fairly simple to calculate the effect, the dowhy package is a good option for estimating the effect a variable has on another variable. It also allows for the application of refutation tests.
 
 ### Calculating estimated effect by hand
 
@@ -69,15 +72,7 @@ Sympy is a python package which allows to calculate derivatives for formulas.
 
 `estimated_effect=d_v_i / d_v_e`
 
-
-
-#### Data
-
-
-
-The Python package dowhy is created for this kind of calculations.
-
-### Finding an estimand
+#### Using DoWhy
 
 The first thing to do is to let dowhy attempt to find an estimand.
 
@@ -87,15 +82,11 @@ The code to find an estimand looks like
 
 `identified_estimand = model.identify_effect(proceed_when_unidentifiable=True)`
 
-The output upon finding the estimand voucher looks like below. The estimand assumptions made for the voucher estimand are true, as our data was created according to these premises. To calculate the effect education has on income when influencing education through voucher will be done via a combination of two partial derivatives.
+Some output upon finding the estimand voucher looks like below. No frontdoor or backdoor variable is found. The expression by which to calculate the estimated effect is emitted. Some assumptions are also being expressed.
 
 Estimand type: EstimandType.NONPARAMETRIC_ATE
 
-#### Estimand : 1
-Estimand name: backdoor
-No such variable(s) found!
-
-#### Estimand : 2
+##### Estimand : 2
 Estimand name: iv
 
 Estimand expression:
@@ -106,45 +97,29 @@ Estimand assumption 1, As-if-random: If U→→income then ¬(U →→{voucher})
 
 Estimand assumption 2, Exclusion: If we remove {voucher}→{education}, then ¬({voucher}→income)
 
-#### Estimand : 3
-Estimand name: frontdoor
-No such variable(s) found!
-
-### Estimate the effect
+##### Estimate the effect
 
 To estimate the effect the following code is used.
 
 `estimate = model.estimate_effect(identified_estimand, method_name="iv.instrumental_variable", test_significance=True)`
 
-#### Realized estimand
+**Realized estimand**
 Realized estimand: Wald Estimator
 
 Realized estimand type: EstimandType.NONPARAMETRIC_ATE
 
-Estimand expression:
+Estimand assumption, treatment_effect_homogeneity: Each unit's treatment ['education'] is affected in the same way by common causes of ['education'] and ['income']
 
-Expectation(Derivative(income, [voucher])*Derivative([education], [voucher])**(-1))
-
-Estimand assumption 1, As-if-random: If U→→income then ¬(U →→{voucher})
-
-Estimand assumption 2, Exclusion: If we remove {voucher}→{education}, then ¬({voucher}→income)
-
-Estimand assumption 3, treatment_effect_homogeneity: Each unit's treatment ['education'] is affected in the same way by common causes of ['education'] and ['income']
-
-Estimand assumption 4, outcome_effect_homogeneity: Each unit's outcome ['income'] is affected in the same way by common causes of ['education'] and ['income']
+Estimand assumption, outcome_effect_homogeneity: Each unit's outcome ['income'] is affected in the same way by common causes of ['education'] and ['income']
 
 Target units: ate
 
-### Effect
+**Effect**
 
-The estimated effect of education on income is 4.01, which is very close to the value used when generating the data, the value used was 4. 
-This value indicates that increasing education by 1 increases income by 4.
+The estimated effect of education on income is 4.10, which is close to the value used when generating the data, the value used was 4. 
+This effect value indicates that increasing education by 1 increases income by 4.10, some p-value is given too (0.001)..
 
-#### Estimate
-Mean value: 4.012529417821327
-p-value: [0, 0.001]
-
-### Refutation
+##### Refutation
 [dowhy Refutation methods](https://causalwizard.app/inference/article/bootstrap-refuters-dowhy#:~:text=The%20refutation%20methods%20in%20DoWhy,with%20the%20model%20or%20data.)
 
 Whereas ML's validation more broadly seeks to estimate model performance on unseen data, refutation seeks to do this by modelling the results of specific, defined scenarios. Each refutation scenario “disproves” a potential “explanation” of the original estimate. 
