@@ -14,6 +14,10 @@ As the unobserved variable has a direct influence on income and on education, th
 
 The instrumental variable 'voucher' has a direct causal influence on 'education', this is called **the relevance assumption**. Through the influence on 'education' it has influence on the 'income' variable. But it has no direct effect on income, this is **the exclusion restriction**. If it would have this direct effect on 'income', it would be hard to separate this effect from the effect the treatment 'education' has on 'income'. The instrumental variable must be randomly assigned, the corelation between 'voucher' and 'income' might just reflect some unobserved confounder, so that's why the instrumental variable should be randomly assigned.
 
+#### Data
+
+
+
 The Python package dowhy is created for this kind of calculations.
 
 ### Finding an estimand
@@ -112,13 +116,41 @@ p value:0.92
 
 ### Formula for this case
 
-Firstly to calculate the effect, this piece of code is enough. The data variable represents a pandas dataset. In this case the effect is calculated using a fraction of covariances. 
+#### Using covariances
+
+To calculate the effect, this piece of code is enough. The data variable represents a pandas dataframe. In this case the effect is calculated using a fraction of covariances. 
 
 `cov_v_e = data['voucher'].cov(data['education'])`
 
 `cov_v_i = data['voucher'].cov(data['income'])`
 
 `estimated_effect=cov_v_i/cov_v_e`
+
+#### Using linear regression and derivatives
+
+Another way to calculate the effect is using derivatives and linear regression lines.
+
+To calculate the regression lines for columns voucher and education, and voucher and income.
+
+`res_v_e = stats.linregress(data["voucher"], data["education"])`
+
+`res_v_i = stats.linregress(data["voucher"], data["income"])`
+
+The values for these regression lines will be used to setup formulas for the lines. Sympy is a python package which allows to calculate derivatives for formulas.
+
+`from sympy import symbols, diff`
+`voucher = symbols('voucher', real=True)`
+`f_v_e = res_v_e.intercept + (res_v_e.slope * voucher)`
+`d_v_e = diff(f_v_e, voucher)`
+`f_v_i = res_v_i.intercept + (res_v_i.slope * voucher)`
+`d_v_i = diff(f_v_i, voucher)`
+
+
+
+
+
+
+
 
 
 
