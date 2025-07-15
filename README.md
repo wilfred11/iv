@@ -2,15 +2,77 @@ To get an idea of instrumental variables and their utility in a causal model, a 
 
 <img src="https://github.com/user-attachments/assets/ec5418df-936d-4bc3-baf3-a963f631ffce" height="200" width="300"/>
 
-The image shows a causal model containing an unobserved U node, this node represents the individual's ability. To generate the neighbouring nodes' (education, income) data, the randomized ability value is used to generate the education and income datapoint. The voucher data is a random variable that influences education just like the (unobserved) ability node. Income is influenced by a factor 4 by education, and by a factor 2 by the unobserved ability.
+The image shows a causal model containing an unobserved U node, this node represents the individual's ability. To generate the neighbouring nodes' (education, income) data, the randomized ability value is used to generate the education and income datapoints. The voucher data is a random variable that influences education just like the (unobserved) ability node. Income is influenced by a factor 4 by education, and by a factor 2 by the unobserved ability.
 
-The whole idea of this setup is to try to statistically guess the influence by education. As all random data is normally distributed (even the unobserved ability), this should be possible.
+The whole idea of this setup is to try to statistically estimate the influence on income by education.
 
+## The instrumental variable
 
+As the unobserved variable (U) has a direct influence on income and on education, the education variable cannot be directly used to estimate its influence on income.
 
-The Python package dowhy is created for this kind of calculations.
+### The relevance assumption, the exclusion restriction, exogeneity assumption
 
-### Finding an estimand
+The instrumental variable 'voucher' has a direct causal influence on 'education', this is called **the relevance assumption**. Through the influence on 'education' it has influence on the 'income' variable. But it has no direct causal effect on income, this is **the exclusion restriction**. If it would have this direct effect on 'income', it would be hard to separate this effect from the effect the treatment 'education' has on 'income'. The corelation between 'voucher' and 'income' might just reflect some unobserved confounder, so that's why the instrumental variable should be randomly assigned to the unit, which is the **exogeneity assumption**.
+
+### Visual relation between 'voucher' and 'education' and 'voucher' and 'income'.
+
+The direct relation between variables voucher and education and voucher and income can be visualized.
+
+<img width="325" alt="v_e" src="https://github.com/user-attachments/assets/e6b8ca22-45d7-4c53-9f5d-4cd23f07d7cb" />
+
+<img width="325" alt="v_i" src="https://github.com/user-attachments/assets/b61c2100-8526-4c8b-b9cd-320b24efb37d" />
+
+<img width="325" alt="e_i" src="https://github.com/user-attachments/assets/5ec6bea2-ba8c-47b6-9c52-8b40a259a581" />
+
+### DoWhy package
+
+Even though in this case it is fairly simple to calculate the effect, the dowhy package is a good option for estimating the effect a variable has on another variable. It also allows for the application of refutation tests.
+
+### Calculating estimated effect by hand
+
+#### Using covariances
+
+To calculate the effect, this piece of code is enough. The data variable represents a pandas dataframe. In this case the effect is calculated using a fraction of covariances. 
+
+`cov_v_e = data['voucher'].cov(data['education'])`
+
+`cov_v_i = data['voucher'].cov(data['income'])`
+
+`estimated_effect=cov_v_i/cov_v_e`
+
+#### Using linear regression and derivatives
+
+Another way to calculate the effect is using derivatives of linear regression lines' functions.
+
+To calculate the regression lines for columns voucher and education, and voucher and income.
+
+**calculating linear regression**
+
+`res_v_e = stats.linregress(data["voucher"], data["education"])`
+
+`res_v_i = stats.linregress(data["voucher"], data["income"])`
+
+The values for these regression lines will be used to setup formulas for the lines. 
+
+**calculating derivatives**
+
+Sympy is a python package which allows to calculate derivatives for formulas.
+
+`from sympy import symbols, diff`
+
+`voucher = symbols('voucher', real=True)`
+
+`f_v_e = res_v_e.intercept + (res_v_e.slope * voucher)`
+
+`d_v_e = diff(f_v_e, voucher)`
+
+`f_v_i = res_v_i.intercept + (res_v_i.slope * voucher)`
+
+`d_v_i = diff(f_v_i, voucher)`
+
+`estimated_effect=d_v_i / d_v_e`
+
+#### Using DoWhy
 
 The first thing to do is to let dowhy attempt to find an estimand.
 
@@ -20,15 +82,12 @@ The code to find an estimand looks like
 
 `identified_estimand = model.identify_effect(proceed_when_unidentifiable=True)`
 
-The output upon finding the estimand voucher looks like below. The estimand assumptions made for the voucher estimand are true, as our data was created according to these premises. To calculate the effect education has on income when influencing education through voucher will be done via a combination of two partial derivatives.
+Some output upon finding the estimand voucher looks like below. No frontdoor or backdoor variable is found. The expression by which to calculate the estimated effect is emitted. Some assumptions are also being expressed.
 
 Estimand type: EstimandType.NONPARAMETRIC_ATE
 
-#### Estimand : 1
-Estimand name: backdoor
-No such variable(s) found!
+##### Estimand : 2
 
-#### Estimand : 2
 Estimand name: iv
 
 Estimand expression:
@@ -39,45 +98,31 @@ Estimand assumption 1, As-if-random: If U→→income then ¬(U →→{voucher})
 
 Estimand assumption 2, Exclusion: If we remove {voucher}→{education}, then ¬({voucher}→income)
 
-#### Estimand : 3
-Estimand name: frontdoor
-No such variable(s) found!
-
-### Estimate the effect
+##### Estimate the effect
 
 To estimate the effect the following code is used.
 
 `estimate = model.estimate_effect(identified_estimand, method_name="iv.instrumental_variable", test_significance=True)`
 
-#### Realized estimand
+**Realized estimand**
+
 Realized estimand: Wald Estimator
 
 Realized estimand type: EstimandType.NONPARAMETRIC_ATE
 
-Estimand expression:
+Estimand assumption, treatment_effect_homogeneity: Each unit's treatment ['education'] is affected in the same way by common causes of ['education'] and ['income']
 
-Expectation(Derivative(income, [voucher])*Derivative([education], [voucher])**(-1))
-
-Estimand assumption 1, As-if-random: If U→→income then ¬(U →→{voucher})
-
-Estimand assumption 2, Exclusion: If we remove {voucher}→{education}, then ¬({voucher}→income)
-
-Estimand assumption 3, treatment_effect_homogeneity: Each unit's treatment ['education'] is affected in the same way by common causes of ['education'] and ['income']
-
-Estimand assumption 4, outcome_effect_homogeneity: Each unit's outcome ['income'] is affected in the same way by common causes of ['education'] and ['income']
+Estimand assumption, outcome_effect_homogeneity: Each unit's outcome ['income'] is affected in the same way by common causes of ['education'] and ['income']
 
 Target units: ate
 
-### Effect
+**Effect**
 
-The estimated effect of education on income is 4.01, which is very close to the value used when generating the data, the value used was 4. 
-This value indicates that increasing education by 1 increases income by 4.
+The estimated effect of education on income is 4.10, which is close to the value used when generating the data, the value used was 4. 
+This effect value indicates that increasing education by 1 increases income by 4.10, some p-value is given too (0.001)..
 
-#### Estimate
-Mean value: 4.012529417821327
-p-value: [0, 0.001]
+##### Refutation
 
-### Refutation
 [dowhy Refutation methods](https://causalwizard.app/inference/article/bootstrap-refuters-dowhy#:~:text=The%20refutation%20methods%20in%20DoWhy,with%20the%20model%20or%20data.)
 
 Whereas ML's validation more broadly seeks to estimate model performance on unseen data, refutation seeks to do this by modelling the results of specific, defined scenarios. Each refutation scenario “disproves” a potential “explanation” of the original estimate. 
@@ -102,17 +147,13 @@ New effect: 0.008035976535494567
 
 p value:0.92
 
-## Idea behind instrumental variables
 
-### Formula for this case
 
-Firstly to calculate the effect, this piece of code is enough. The data variable is a pandas dataset. In this case the effect is just a fraction of covariances. 
 
-`cov_v_e = data['voucher'].cov(data['education'])`
 
-`cov_v_i = data['voucher'].cov(data['income'])`
 
-`estimated_effect=cov_v_i/cov_v_e`
+
+
 
 
 
