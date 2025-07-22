@@ -12,7 +12,7 @@ As the unobserved variable (U) has a direct influence on income and on education
 
 ## The relevance assumption, the exclusion restriction, exogeneity assumption
 
-The instrumental variable 'voucher' has a direct causal influence on 'education', this is called **the relevance assumption**. Through the influence on 'education' it has influence on the 'income' variable. But it has no direct causal effect on income, this is **the exclusion restriction**. If it would have this direct effect on 'income', it would be hard to separate this effect from the effect the treatment 'education' has on 'income'. The corelation between 'voucher' and 'income' might just reflect some unobserved confounder, so that's why the instrumental variable should be randomly assigned to the unit, which is the **exogeneity assumption**.
+The instrumental variable 'voucher' should have a direct causal influence on 'education', this is called **the relevance assumption**. Through the influence on 'education' it has influence on the 'income' variable. But it has no direct causal effect on income, this is **the exclusion restriction**. If it would have this direct effect on 'income', it would be hard to separate this effect from the effect the treatment 'education' has on 'income'. The corelation between 'voucher' and 'income' might just reflect some unobserved confounder, so that's why the instrumental variable should be randomly assigned to the unit, which is the **exogeneity assumption**.
 
 ## Visual relation between 'voucher' and 'education' and 'voucher' and 'income'.
 
@@ -22,7 +22,7 @@ The direct relation between variables voucher and education and voucher and inco
 
 <img width="325" alt="v_i" src="https://github.com/user-attachments/assets/b61c2100-8526-4c8b-b9cd-320b24efb37d" />
 
-<img width="325" alt="e_i" src="https://github.com/user-attachments/assets/5ec6bea2-ba8c-47b6-9c52-8b40a259a581" />
+<img width="325" alt="e_i" src="https://github.com/user-attachments/assets/624a332a-0617-4091-b4c0-aa2eaace9789" />
 
 ## DoWhy package
 
@@ -47,6 +47,8 @@ Another way to calculate the effect is using derivatives of linear regression li
 To calculate the regression lines for columns voucher and education, and voucher and income.
 
 **calculating linear regression**
+
+`from scipy import stats`
 
 `res_v_e = stats.linregress(data["voucher"], data["education"])`
 
