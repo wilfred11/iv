@@ -13,7 +13,7 @@ from data import get_data
 
 np.random.seed(1)
 
-do=1
+do=2
 #https://www.youtube.com/watch?v=nsr9eh-qVPg
 
 if do==1:
@@ -70,7 +70,7 @@ if do==2:
 
         plt.scatter(df["education"], df["income"])
         plt.plot(df["education"], res_e_i.intercept + res_e_i.slope * df['education'], 'r',
-                 label='voucher/income fitted line')
+                 label='education/income fitted line')
         plt.xlabel("education")
         plt.ylabel("income")
         plt.legend()
